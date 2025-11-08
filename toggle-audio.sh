@@ -9,6 +9,8 @@ get_sink_id() {
         }'
 }
 
+# Replace these speaker/headphone names with YOUR device names!
+# This can be done by running "wpctl status" and looking for the names of Audio Sinks
 SPEAKERS_NAME="Starship/Matisse HD Audio Controller Analog Stereo"
 HEADPHONES_NAME="HyperX 7.1 Audio Analog Stereo"
 
@@ -25,13 +27,10 @@ CURRENT_ID=$(wpctl status | awk '
 SPEAKERS_ID=$(get_sink_id "$SPEAKERS_NAME")
 HEADPHONES_ID=$(get_sink_id "$HEADPHONES_NAME")
 
+# Debug lines (optional)
 echo "Speakers_ID = $SPEAKERS_ID"
 echo "Headphones_ID = $HEADPHONES_ID"
 echo "Current_ID = $CURRENT_ID"
-# Debug lines (optional)
-# echo "Current: $CURRENT"
-# echo "Speakers ID: $SPEAKERS_ID"
-# echo "Headphones ID: $HEADPHONES_ID"
 
 # Determine which to switch to
 if [ "$CURRENT_ID" = "$SPEAKERS_ID" ]; then
